@@ -1,0 +1,19 @@
+{
+  "name": "restbot",
+  "version": "1.0.0",
+  "description": "perform rest api get/post/ webhook",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "author": "Richard Fazzio",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "circuit-sdk": "^1.2.3902",
+    "express": "^4.16.3",
+    "ngrok": "^3.0.1",
+    "node-fetch": "^2.2.0",
+    "simple-oauth2": "^2.2.1"
+  }
+}
