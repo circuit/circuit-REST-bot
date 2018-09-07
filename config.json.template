@@ -1,0 +1,9 @@
+{
+    "bot": {
+        "domain": "https://circuitsandbox.net",
+        "client_id": "<your_client_id>",
+        "client_secret": "your_client_secret"
+    },
+    "port": <app_port>,
+    "convId": "<conversation_id>"
+}
