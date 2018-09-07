@@ -4,7 +4,8 @@ const config = require('./config.json');
 const bodyParser = require('body-parser');
 const express = require('express');
 const ngrok = require('ngrok');
-var app = express();
+
+const app = express();
 const DOMAIN = config.bot.domain;
 const PORT = config.port;
 const convId = config.convId;
@@ -17,6 +18,7 @@ const credentials = {
     tokenHost: DOMAIN
   }
 };
+
 app.use(express.static('app'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
@@ -41,7 +43,7 @@ const oauth2 = simpleOauth2.create(credentials);
 (async () => {
   try {
     URL = await ngrok.connect(PORT);
-    URL = URL.replace('https', 'http'); // npm ngrok returns https, but http also works
+    URL = URL.replace('https', 'http'); // ngrok with npm returns https, but http also works
 
     const { access_token: token } = await oauth2.clientCredentials.getToken({scope: 'ALL'})
     console.log('Access Token: ', token);
