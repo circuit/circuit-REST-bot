@@ -8,16 +8,14 @@ Circuit RESTful bot GET | POST | Webhook
 
 ## Dependencies
 
-* [circuit-sdk](https://www.npmjs.com/package/circuit-sdk).
 * [express](https://www.npmjs.com/package/express).
-* [ngrok](https://www.npmjs.com/package/ngrok).
 * [node-fetch](https://www.npmjs.com/package/node-fetch).
 * [simple-oauth2](https://www.npmjs.com/package/simple-oauth2).
-* [body-parser](https://www.npmjs.com/package/body-parser).
 
 ## REST Reference
 Other examples of RESTful API's with circuit can be found [here](https://circuitsandbox.net/rest/v2/swagger/ui/index.html).
 
 ## Usage
 1. Clone the respository.
-2. Rename `config.json.template` to `config.json` after adding your `client_id`, `client_secret`, and the `port` the bot wil run on. Once you have done so all you need to do is run `$ npm start` and the bot will begin. The bot will log the most recent items in the conversation, post a new item once it is listening, and then log any new items posted in the conversation.
+2. Rename `config.json.template` to `config.json` after adding your `client_id`, `client_secret`, `url`, and the `port` the bot wil run on. The `url` field should refer to the return url the webhook should send data to. Once you have done so all you need to do is run `$ npm start` and the bot will begin. The bot will log the most recent items in the conversation, post a new item once it is listening, and then log any new items posted in the conversation.
+* Note: The bot must be a part of the conversation it is listening to.

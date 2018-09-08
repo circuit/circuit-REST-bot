@@ -5,5 +5,6 @@
         "client_secret": "your_client_secret"
     },
     "port": <app_port>,
-    "convId": "<conversation_id>"
+    "convId": "<conversation_id>",
+    "url": "<return_url_for_webhook>"
 }
