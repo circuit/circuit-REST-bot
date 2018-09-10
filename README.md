@@ -17,6 +17,7 @@ Other examples of RESTful API's with circuit can be found [here](https://circuit
 
 ## Usage
 1. Clone the respository.
+2. Run : `$ npm install`.
 2. Rename `config.json.template` to `config.json` after adding your `client_id`, `client_secret`, `url`, and the `port` the bot wil run on. The `url` field should refer to the return url the webhook should send data to. Once you have done so all you need to do is run `$ npm start` and the bot will begin. The bot will log the most recent items in the conversation, post a new item once it is listening, and then log any new items posted in the conversation.
 * Note: The bot must be a part of the conversation it is listening to.
-3. If you want to host this on your local machine you can use something like [ngrok](https://ngrok.com/) to host the bot. For the webhooks just add the ngrok url as the `url` field in the config.json file, make sure your serve the ngrok tunnel on the same port as the bot.
+3. If you want to host this on your local machine you can use something like [ngrok](https://ngrok.com/) to host the bot. For the webhooks just add the ngrok url as the `url` field in the config.json file, make sure you serve the ngrok tunnel on the same port as the bot.

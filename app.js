@@ -42,14 +42,11 @@ const oauth2 = simpleOauth2.create(credentials);
     console.log('Access Token: ', token);
 
     // clear all previous webhooks created by bot
-    try {
-      await fetch(`${DOMAIN}/rest/v2/webhooks`, {
-        method: 'DELETE',
-        headers: { 'Authorization': 'Bearer ' + token }
-      });
-    } catch (e) {
-      console.log('Threw Error: ', e);
-    }
+    await fetch(`${DOMAIN}/rest/v2/webhooks`, {
+      method: 'DELETE',
+      headers: { 'Authorization': 'Bearer ' + token }
+    })
+    .catch(console.error);
     
     // register a webhook to listen to new items added
     await fetch(`${DOMAIN}/rest/v2/webhooks`, {
@@ -58,12 +55,15 @@ const oauth2 = simpleOauth2.create(credentials);
         'Authorization': 'Bearer ' + token
       },
       body: `url=${encodeURI(URL)}%2Fwebhook&filter=CONVERSATION.ADD_ITEM`
-    });
+    })
+    .catch(console.error);
 
     // Using GET to retrieve the most recent items in the conversation
     const items = await fetch(`${DOMAIN}/rest/conversations/${convId}/items`, {
       headers: { 'Authorization': 'Bearer ' + token }
-    }).then(res => res.json());
+    })
+    .then(res => res.json())
+    .catch(console.error);
     console.log('Current Items in the conversation: ');
     items.forEach(item => {
       let message = '';
@@ -79,7 +79,8 @@ const oauth2 = simpleOauth2.create(credentials);
         'Authorization': 'Bearer ' + token
       },
       body: `content=${encodeURI(`I am listening to the conversation starting now at : ${new Date().toLocaleTimeString()}`)}`
-    });
+    })
+    .catch(console.error);
 
   } catch (err) {
     console.error(err);
