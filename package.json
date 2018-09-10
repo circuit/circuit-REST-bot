@@ -1,7 +1,7 @@
 {
   "name": "circuit-REST-bot",
   "version": "1.0.0",
-  "description": "This bot uses RESTful API calls to monitor a conversation. The bot logs recent items, posts an item once monitoring, and logs any new items added to teh conversation.Okay.",
+  "description": "This bot uses RESTful API calls to monitor a conversation. The bot logs recent items, posts an item once monitoring, and logs any new items added to the conversation.",
   "main": "app.js",
   "scripts": {
     "start": "node app.js"
