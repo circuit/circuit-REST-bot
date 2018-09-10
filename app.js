@@ -56,14 +56,14 @@ app.listen(PORT, () => console.log('App listening on: ', PORT));
       headers: { 
         'Authorization': 'Bearer ' + token
       },
-      body: `url=${encodeURI(`${URL`${'/webhook'}`}`)}&filter=CONVERSATION.ADD_ITEM`
+      body: `url=${encodeURI(`${URL}/webhook`)}&filter=CONVERSATION.ADD_ITEM`
     });
 
     // Using GET to retrieve the most recent items in the conversation
     const res = await fetch(`${DOMAIN}/rest/conversations/${convId}/items`, {
       headers: { 'Authorization': 'Bearer ' + token }
     });
-    const items = res.json();
+    const items = await res.json();
     console.log('Current Items in the conversation: ');
     items.forEach(item => {
       printMessage(item);
