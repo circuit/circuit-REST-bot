@@ -1,3 +1,4 @@
+'use strict';
 const simpleOauth2 = require('simple-oauth2');
 const fetch = require('node-fetch');
 const config = require('./config.json');
@@ -20,21 +21,23 @@ const credentials = {
   }
 };
 
+function printMessage(item) {
+  let message = '';
+  item.text.topic ? message += `Item topic : ${item.text.topic}\n` : message += '';
+  item.text.content ? message += `Content: ${item.text.content}`: message += '';
+  console.log(message);
+}
+// Initialize the OAuth2 Library
+const oauth2 = simpleOauth2.create(credentials);
 
 // Using a WebHook to log new items added to the listened conversation.
 app.post('/webhook', (req, res) => {
   const item = req.body && req.body.item;
   if (item && item.convId === convId) {
-    let message = '';
-    item.text.topic ? message += `Item topic : ${item.text.topic}\n` : message += '';
-    item.text.content ? message += `Content: ${item.text.content}`: message += '';
-    console.log(message);
+    printMessage(item);
   }
 });
 app.listen(PORT, () => console.log('App listening on: ', PORT));
-
-// Initialize the OAuth2 Library
-const oauth2 = simpleOauth2.create(credentials);
 
 (async () => {
   try {
@@ -45,31 +48,25 @@ const oauth2 = simpleOauth2.create(credentials);
     await fetch(`${DOMAIN}/rest/v2/webhooks`, {
       method: 'DELETE',
       headers: { 'Authorization': 'Bearer ' + token }
-    })
-    .catch(console.error);
-    
+    });
+
     // register a webhook to listen to new items added
     await fetch(`${DOMAIN}/rest/v2/webhooks`, {
       method: 'POST',
       headers: { 
         'Authorization': 'Bearer ' + token
       },
-      body: `url=${encodeURI(URL)}%2Fwebhook&filter=CONVERSATION.ADD_ITEM`
-    })
-    .catch(console.error);
+      body: `url=${encodeURI(`${URL`${'/webhook'}`}`)}&filter=CONVERSATION.ADD_ITEM`
+    });
 
     // Using GET to retrieve the most recent items in the conversation
-    const items = await fetch(`${DOMAIN}/rest/conversations/${convId}/items`, {
+    const res = await fetch(`${DOMAIN}/rest/conversations/${convId}/items`, {
       headers: { 'Authorization': 'Bearer ' + token }
-    })
-    .then(res => res.json())
-    .catch(console.error);
+    });
+    const items = res.json();
     console.log('Current Items in the conversation: ');
     items.forEach(item => {
-      let message = '';
-      item.text.topic ? message += `Item topic : ${item.text.topic}\n` : message += '';
-      item.text.content ? message += `Content: ${item.text.content}`: message += '';
-      console.log(message)
+      printMessage(item);
     });
 
     // Having the bot use POST to send a message to the conversation
@@ -79,9 +76,7 @@ const oauth2 = simpleOauth2.create(credentials);
         'Authorization': 'Bearer ' + token
       },
       body: `content=${encodeURI(`I am listening to the conversation starting now at : ${new Date().toLocaleTimeString()}`)}`
-    })
-    .catch(console.error);
-
+    });
   } catch (err) {
     console.error(err);
   }

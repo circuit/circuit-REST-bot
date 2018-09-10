@@ -1,12 +1,12 @@
 {
-  "name": "restbot",
+  "name": "circuit-REST-bot",
   "version": "1.0.0",
-  "description": "perform rest api get/post/ webhook",
+  "description": "This bot uses RESTful API calls to monitor a conversation. The bot logs recent items, posts an item once monitoring, and logs any new items added to teh conversation.Okay.",
   "main": "app.js",
   "scripts": {
     "start": "node app.js"
   },
-  "author": "Richard Fazzio",
+  "author": "Richard Fazzio <richard.fazzio@atos.net",
   "license": "ISC",
   "dependencies": {
     "express": "^4.16.3",
