@@ -9,7 +9,7 @@ This is an example bot that uses RESTful API calls to monitor a conversation on 
 
 ## Dependencies
 
-* [express](https://www.npmjs.com/package/express)done
+* [express](https://www.npmjs.com/package/express)
 
 * [node-fetch](https://www.npmjs.com/package/node-fetch)
 * [simple-oauth2](https://www.npmjs.com/package/simple-oauth2)
