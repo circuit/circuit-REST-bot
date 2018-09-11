@@ -1,6 +1,6 @@
 Circuit RESTful bot GET | POST | Webhook
 ==================================
-## Decription
+## Description
 This is an example bot that uses RESTful API calls to monitor a conversation on circuit.  The bot will log the most recent items in the conversation, post a new item once it is listening, and then log any new items posted in the conversation.
 ## Prerequisites
 [![NodeJS](https://img.shields.io/badge/Node.js-6.10.2-brightgreen.svg)](https://nodejs.org) <br/>
