@@ -65,9 +65,7 @@ app.listen(PORT, () => console.log('App listening on: ', PORT));
     });
     const items = await res.json();
     console.log('Current Items in the conversation: ');
-    items.forEach(item => {
-      printMessage(item);
-    });
+    items.forEach(printMessage);
 
     // Having the bot use POST to send a message to the conversation
     await fetch(`${DOMAIN}/rest/conversations/${convId}/messages`, {
