@@ -41,7 +41,7 @@ app.listen(PORT, () => console.log('App listening on: ', PORT));
 
 (async () => {
   try {
-    const { access_token: token } = await oauth2.clientCredentials.getToken({scope: 'ALL'})
+    const { access_token: token } = await oauth2.clientCredentials.getToken({ scope: 'CALL_RECORDING,CALLS,MENTION_EVENT,READ_CONVERSATIONS,READ_USER,READ_USER_PROFILE,WRITE_CONVERSATIONS,WRITE_USER_PROFILE' });
     console.log('Access Token: ', token);
 
     // clear all previous webhooks created by bot
@@ -65,7 +65,7 @@ app.listen(PORT, () => console.log('App listening on: ', PORT));
     });
     const items = await res.json();
     console.log('Current Items in the conversation: ');
-    items.forEach(printMessage);
+    items.forEach(item => item.type === 'TEXT' && printMessage(item));
 
     // Having the bot use POST to send a message to the conversation
     await fetch(`${DOMAIN}/rest/conversations/${convId}/messages`, {
