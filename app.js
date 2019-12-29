@@ -41,7 +41,7 @@ app.listen(PORT, () => console.log('App listening on: ', PORT));
 
 (async () => {
   try {
-    const { access_token: token } = await oauth2.clientCredentials.getToken({ scope: 'CALL_RECORDING,CALLS,MENTION_EVENT,READ_CONVERSATIONS,READ_USER,READ_USER_PROFILE,WRITE_CONVERSATIONS,WRITE_USER_PROFILE' });
+    const { access_token: token } = await oauth2.clientCredentials.getToken({ scope: 'READ_CONVERSATIONS,READ_USER_PROFILE,WRITE_CONVERSATIONS' });
     console.log('Access Token: ', token);
 
     // clear all previous webhooks created by bot
