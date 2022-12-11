@@ -9,7 +9,7 @@
   "author": "Richard Fazzio <richard.fazzio@atos.net",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.16.3",
+    "express": "^4.17.3",
     "node-fetch": "^2.6.1",
     "simple-oauth2": "^2.2.1"
   }
